@@ -18,6 +18,7 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { RegisterPage } from '../pages/register/register';
 import { LogoutPage } from '../pages/logout/logout';
 import { LocationPage } from '../pages/location/location';
+import { Chart_1Page } from '../pages/chart-1/chart-1';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -52,7 +53,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ProfilePage,
     WelcomePage,
     RegisterPage,
-    LogoutPage
+    LogoutPage,
+    Chart_1Page
   ],
   providers: [
     StatusBar,
