@@ -9,23 +9,25 @@
 <ion-content padding default-background text-center>
 	<img width="50%" src="http://119.59.125.191/shares/logo.png" alt="">
 
-<ion-list>
 
-  <ion-item>
-    <ion-label><font color="white">ชื่อผู้ใช้</font></ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
+<form novalidate [formGroup]="reportForm" >
+	<div class="form">
+		<ion-list>
+		  <ion-item>
+		    <ion-input type="email" formControlName="email_user" placeholder="Username" required></ion-input>
+		  </ion-item>
 
-  <ion-item>
-    <ion-label><font color="white">รหัสผ่าน</font></ion-label>
-    <ion-input type="password"></ion-input>
-  </ion-item>
+		  <ion-item>
+		    <ion-input type="password" formControlName="pass_user" placeholder="Password" required></ion-input>
+		  </ion-item>
 
-</ion-list>
-
-<button ion-button color="secondary" block round  (click)="gotoindex()"  >LOGIN</button>
+		</ion-list> <!-- [disabled]="!reportForm.valid" -->
+		<button ion-button color="secondary" block round  (click)="gotoindex()"  >LOGIN</button>
 <button ion-button color="primary" block round  (click)="signup()"  >REGISTER</button>
 <button ion-button color="dark" block round    >OFFLINE MODE</button>
+	</div>
+</form>	
+
 
 
 </ion-content>
