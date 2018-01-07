@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-import { ShareService } from '../../providers/service/share';
+//import { ShareService } from '../../providers/service/share';
 
 @IonicPage()
 @Component({
@@ -32,12 +32,12 @@ export class AddDataPage {
     public toastCtrl: ToastController,
     public view: ViewController,
     public http: HttpClient,
-    public shareService: ShareService
+    //public shareService: ShareService
   ) {    
     this.pos = navParams.get('pos');
     this.title = fb.control('', Validators.required);
     this.descpt = fb.control('', Validators.required);
-    this.usrData = this.shareService.getUserData();
+    //this.usrData = this.shareService.getUserData();
     //this.fname = fb.control('', Validators.required);
     this.reportForm = fb.group({
       'title': this.title, 
