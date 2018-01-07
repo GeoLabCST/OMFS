@@ -1,13 +1,13 @@
 page-welcome {
 [default-background] {
-    background-image: url("http://119.59.125.191/shares/03.jpg");
+    background-image: url("http://119.59.125.191/shares/07.jpg");
     background-repeat: no-repeat;
     background-size: auto ;
     @include darkening-blend-mode;
   }
 	
 	.item.item-input {
-	    background-color:rgba(201, 76, 76, 0.3);
+	    background-color:rgba(201, 76, 76, 0.1);
 	    color: white;
 	}
 

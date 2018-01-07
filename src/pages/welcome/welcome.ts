@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { TabsPage } from './../tabs/tabs';
 /**
  * Generated class for the WelcomePage page.
  *
@@ -22,4 +22,9 @@ export class WelcomePage {
     console.log('ionViewDidLoad WelcomePage');
   }
 
+
+
+  gotoindex(){
+    this.navCtrl.push(TabsPage);
+  }
 }
