@@ -111,7 +111,7 @@ export class RegisterPage {
     });
 
     loader.present();    
-    this.http.post('http://119.59.125.189/isnre2/php_app/insert.php', data)
+    this.http.post('http://localhost/libs/add_user_omfs.php', data)
     .subscribe(res => {
       this.res = res;
     	
