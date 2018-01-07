@@ -1,0 +1,47 @@
+<ion-header id="isnre-font">
+  <ion-navbar> 
+    <ion-title>เพิ่มข้อมูล</ion-title>    
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding id="isnre-font">
+ 
+    <form novalidate [formGroup]="reportForm" >
+        <ion-list>
+    
+          <ion-item>
+            <ion-label color="primary" stacked>ตำแหน่ง</ion-label>
+            <ion-input type="text" placeholder="lat: {{pos.lat}} long: {{pos.lng}}" readonly></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label color="primary" stacked>สถานที่</ion-label>
+            <ion-input type="text" formControlName="title" placeholder="กรอกชื่อสถานที่"></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label color="primary" stacked>รายละเอียด</ion-label>
+            <ion-input type="text" formControlName="descpt" placeholder="กรอกรายละเอียดเกี่ยวกับสถานที่"></ion-input>
+          </ion-item>
+    
+          <!-- <ion-item>
+            <ion-label color="primary" stacked>ชื่อ-นามสกุล</ion-label>
+            <ion-input type="email" formControlName="fname" placeholder="กรอกชื่อผู้รายงาน"></ion-input>
+          </ion-item> -->
+    
+        </ion-list>
+    
+       
+        <ion-card>
+          <img [src]="imageURI" *ngIf="imageURI" />
+        </ion-card>   
+        <button ion-button color="danger" round icon-left (click)="takePicture()">
+            <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+          </button>   
+        <p></p> 
+        <button ion-button type="submit" [disabled]="!reportForm.valid" (click)="submit()">ส่งข้อมูล</button>
+        <button ion-button color="light" type="submit" [disabled]="!reportForm.valid" (click)="closeModal()">ยกเลิก</button>
+      </form>
+    <!-- <button ion-button (click)="closeModal()">แสดงแผนที่</button> -->
+
+</ion-content>

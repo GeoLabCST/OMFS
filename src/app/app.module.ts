@@ -17,6 +17,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { RegisterPage } from '../pages/register/register';
 import { LogoutPage } from '../pages/logout/logout';
+import { LocationPage } from '../pages/location/location';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';

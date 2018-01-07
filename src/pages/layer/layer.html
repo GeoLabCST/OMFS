@@ -1,0 +1,25 @@
+<ion-header id="isnre-font">
+
+  <ion-navbar>
+    <ion-title>ชั้นข้อมูล</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content id="isnre-font">
+  <h4>เลือกชั้นข้อมูล</h4>
+  <ion-scroll scrollX="true" scrollY="true" class="data">
+    <ion-list>
+      <ion-item *ngFor="let lyr of lyrs; let i = index">
+        <ion-label>{{lyr.lyr_desc}}</ion-label>
+        <ion-checkbox [(ngModel)]="lyr.checked[0]" (ionChange)="onChange(lyr.lyr,lyr.lyr_desc,$event.checked, i)" value="lyr.lyr"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </ion-scroll>
+  <p></p>
+  <div padding>
+    <button ion-button (click)="lyrSelected()">กลับหน้าแผนที่</button>
+  </div>
+
+</ion-content>

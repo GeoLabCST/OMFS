@@ -1,0 +1,56 @@
+<ion-header id="isnre-font">
+
+  <ion-navbar>
+    <ion-title>เลือกพื้นที่</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding id="isnre-font">
+    เลือกจังหวัด
+    <ion-list>
+        <ion-item>
+            <ion-label>จังหวัด</ion-label>
+            <ion-select [(ngModel)]="prov_ls" multiple="false" interface="action-sheet" (ngModelChange)="initializeAmp($event)">
+                <ion-option *ngFor="let pro of pros" [value] = "pro" >{{pro.prov_namt}}</ion-option>
+            </ion-select>
+          </ion-item>
+      </ion-list>
+      
+    เลือกอำเภอ
+
+    <ion-list>
+        <ion-item>
+            <ion-label>อำเภอ</ion-label>
+            <ion-select [(ngModel)]="amp_ls" multiple="false" interface="action-sheet" (ngModelChange)="initializeTam($event)">
+                <ion-option *ngFor="let amp of amps" [value] = "amp">{{amp.amp_namt}}</ion-option>
+            </ion-select>
+          </ion-item>
+      </ion-list>
+
+    เลือกตำบล
+
+    <ion-list>
+        <ion-item>
+            <ion-label>ตำบล</ion-label>
+            <ion-select [(ngModel)]="tam_ls" multiple="false" interface="action-sheet" (ngModelChange)="tamExt($event); ">
+                <ion-option *ngFor="let tam of tams" [value] = "tam">{{tam.tam_namt}}</ion-option>
+            </ion-select>
+          </ion-item>
+      </ion-list>
+
+    <!-- เลือกชั้นข้อมูล -->
+
+    <!-- ion-list>
+        <ion-item>
+            <ion-label>ชั้นข้อมูล</ion-label>
+            <ion-select [(ngModel)]="lyr_ls" multiple="true" interface="action-sheet">
+                <ion-option *ngFor="let lyr of lyrs" [value] = "lyr">{{lyr.lyr_desc}}</ion-option>
+            </ion-select>
+          </ion-item>
+      </ion-list -->
+
+      <button ion-button (click)="itemSelected()">แสดงแผนที่</button>
+
+  </ion-content>
