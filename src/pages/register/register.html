@@ -1,18 +1,84 @@
-<!--
-  Generated template for the RegisterPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>register</ion-title>
+    <ion-title>REGISTER</ion-title>
   </ion-navbar>
 
 </ion-header>
+<!-- Themes Register + logo -->
+<ion-content  background-size default-background  id="isnre-font">
+        <ion-row wrap padding>
+            <ion-col col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+                <!--Form-->
+                  <form novalidate >
+                <div class="form">
+                    <!--Form Title-->
+                    <h1 title text-right>สมัครสมาชิกใหม่</h1>
+                    <!---Input field username-->
+                    <ion-item no-padding>
+                        <ion-label floating>ชื่อ</ion-label>
+                        <ion-input required type="text" ></ion-input>
+                    </ion-item>
+                    <!---Input field password-->
+                    <ion-item no-padding>
+                        <ion-label floating>นามสกุล</ion-label>
+                        <ion-input required type="text" ></ion-input>
+                    </ion-item>
+                    <!---Input field country-->
+                    <ion-item no-padding>
+                        <ion-label floating>เบอร์โทรศัพท์</ion-label>
+                        <ion-input required type="number" ></ion-input>
+                    </ion-item>
+                    <!---Input field city-->
+                    <ion-item no-padding>
+                        <ion-label floating>จังหวัด</ion-label>
+                        <ion-input required type="text" ></ion-input>
+                    </ion-item>
+                    <ion-item no-padding>
+                        <ion-label floating>อำเภอ</ion-label>
+                        <ion-input required type="text" ></ion-input>
+                    </ion-item>
+                    <ion-item no-padding>
+                        <ion-label floating>ตำบล</ion-label>
+                        <ion-input required type="text"  ></ion-input>
+                    </ion-item>
+
+                 
+                    <ion-item  no-padding>
+                      <ion-label floating>สิทธิ์การใช้งาน</ion-label>
+                      <ion-select >
+                        <ion-option value="operational" >ระดับปฏิบัติการ</ion-option>
+                        <ion-option value="analytical">ระดับวิเคราะห์</ion-option>
+                        <ion-option value="executive">ระดับบริหาร</ion-option>
+                      </ion-select>
+                    </ion-item>
+
+                    <!---Input field email-->
+                    <ion-item no-padding>
+                        <ion-label floating>email <small>*ใช้ในการเข้าสู่ระบบ</small></ion-label>
+                        <ion-input required type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" ></ion-input>
+                    </ion-item>
+                    <ion-item no-padding>
+                        <ion-label floating>รหัสผ่าน <small>*ใช้ในการเข้าสู่ระบบ</small></ion-label>
+                        <ion-input required type="password" ></ion-input>
+                    </ion-item>
 
 
-<ion-content padding>
+                   
 
+                       <button ion-button block icon-left (click)="takePicture()">
+                          <ion-icon ios="ios-camera" md="md-camera"></ion-icon> ถ่ายภาพ
+                        </button>
+                        <ion-card>
+                          <img [src]="imageURI" *ngIf="imageURI" />
+                        </ion-card>
+                     <hr>
+
+                    <!---Register button-->
+                     <button ion-button block type="submit" >สร้างบัญชีใหม่</button>
+                </div>
+                </form>
+            </ion-col>
+        </ion-row>
 </ion-content>
