@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
-import { MapPage } from '../map/map';
+//import { MapPage } from '../map/map';
 
 
 
