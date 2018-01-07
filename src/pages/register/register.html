@@ -11,43 +11,43 @@
         <ion-row wrap padding>
             <ion-col col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
                 <!--Form-->
-                  <form novalidate >
+                  <form novalidate [formGroup]="reportForm" >
                 <div class="form">
                     <!--Form Title-->
                     <h1 title text-right>สมัครสมาชิกใหม่</h1>
                     <!---Input field username-->
                     <ion-item no-padding>
                         <ion-label floating>ชื่อ</ion-label>
-                        <ion-input required type="text" ></ion-input>
+                        <ion-input required type="text" formControlName="name_user" ></ion-input>
                     </ion-item>
                     <!---Input field password-->
                     <ion-item no-padding>
                         <ion-label floating>นามสกุล</ion-label>
-                        <ion-input required type="text" ></ion-input>
+                        <ion-input required type="text" formControlName="lname_user"></ion-input>
                     </ion-item>
                     <!---Input field country-->
                     <ion-item no-padding>
                         <ion-label floating>เบอร์โทรศัพท์</ion-label>
-                        <ion-input required type="number" ></ion-input>
+                        <ion-input required type="number" formControlName="tel_user"   ></ion-input>
                     </ion-item>
                     <!---Input field city-->
                     <ion-item no-padding>
                         <ion-label floating>จังหวัด</ion-label>
-                        <ion-input required type="text" ></ion-input>
+                        <ion-input required type="text" formControlName="prov_user" ></ion-input>
                     </ion-item>
                     <ion-item no-padding>
                         <ion-label floating>อำเภอ</ion-label>
-                        <ion-input required type="text" ></ion-input>
+                        <ion-input required type="text" formControlName="amp_user" ></ion-input>
                     </ion-item>
                     <ion-item no-padding>
                         <ion-label floating>ตำบล</ion-label>
-                        <ion-input required type="text"  ></ion-input>
+                        <ion-input required type="text" formControlName="tam_user" ></ion-input>
                     </ion-item>
 
                  
                     <ion-item  no-padding>
                       <ion-label floating>สิทธิ์การใช้งาน</ion-label>
-                      <ion-select >
+                      <ion-select formControlName="level_user">
                         <ion-option value="operational" >ระดับปฏิบัติการ</ion-option>
                         <ion-option value="analytical">ระดับวิเคราะห์</ion-option>
                         <ion-option value="executive">ระดับบริหาร</ion-option>
@@ -57,11 +57,11 @@
                     <!---Input field email-->
                     <ion-item no-padding>
                         <ion-label floating>email <small>*ใช้ในการเข้าสู่ระบบ</small></ion-label>
-                        <ion-input required type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" ></ion-input>
+                        <ion-input required type="email" formControlName="email_user" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" ></ion-input>
                     </ion-item>
                     <ion-item no-padding>
                         <ion-label floating>รหัสผ่าน <small>*ใช้ในการเข้าสู่ระบบ</small></ion-label>
-                        <ion-input required type="password" ></ion-input>
+                        <ion-input required type="password" formControlName="pass_user"  ></ion-input>
                     </ion-item>
 
 
@@ -76,7 +76,7 @@
                      <hr>
 
                     <!---Register button-->
-                     <button ion-button block type="submit" >สร้างบัญชีใหม่</button>
+                     <button ion-button block type="submit" [disabled]="!reportForm.valid" (click)="submit()">สร้างบัญชีใหม่</button>
                 </div>
                 </form>
             </ion-col>
