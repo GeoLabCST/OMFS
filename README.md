@@ -3,15 +3,18 @@ Offline Mobile GIS Field Survey
 
 ionic gear 
 ```bash
-$ npm install leaflet --save
-$ npm install leaflet.gridlayer.googlemutant --save 
+$ npm install --save leaflet
+$ npm install --save leaflet.gridlayer.googlemutant
 
-$ ionic cordova plugin add cordova-plugin-geolocation --save
-$ npm install @ionic-native/geolocation --save
+$ ionic cordova plugin add cordova-plugin-geolocation --save 
+$ npm install --save @ionic-native/geolocation
 
 $ ionic cordova plugin add cordova-plugin-file-transfer --save
-$ npm install @ionic-native/file-transfer --save
+$ npm install --save @ionic-native/file-transfer
 
 $ ionic cordova plugin add cordova-plugin-camera --save 
-$ npm install @ionic-native/camera --save 
+$ npm install --save @ionic-native/camera 
+
+$ ionic cordova plugin add cordova-plugin-googlemaps --save
+$ npm install --save @ionic-native/google-maps
 ```

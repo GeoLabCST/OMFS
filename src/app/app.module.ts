@@ -19,6 +19,7 @@ import { RegisterPage } from '../pages/register/register';
 import { LogoutPage } from '../pages/logout/logout';
 import { LocationPage } from '../pages/location/location';
 import { Chart_1Page } from '../pages/chart-1/chart-1';
+import { AddDataPage } from '../pages/add-data/add-data';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,7 +34,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ProfilePage,
     WelcomePage,
     RegisterPage,
-    LogoutPage
+    LogoutPage,
+    Chart_1Page,
+    LocationPage,
+    AddDataPage
 
   ],
   imports: [
@@ -54,7 +58,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     WelcomePage,
     RegisterPage,
     LogoutPage,
-    Chart_1Page
+    Chart_1Page,
+    LocationPage,
+    AddDataPage
   ],
   providers: [
     StatusBar,
