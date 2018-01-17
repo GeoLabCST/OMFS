@@ -15,17 +15,15 @@
 
       <ion-item>
         <ion-label color="primary" stacked>สถานที่</ion-label>
-        <ion-input type="text" formControlName="title" placeholder="กรอกชื่อสถานที่"></ion-input>
-      </ion-item>
-
-      
+        <ion-input type="text" formControlName="fplace" placeholder="กรอกชื่อสถานที่"></ion-input>
+      </ion-item>      
 
       <ion-item>
           <ion-label color="primary" stacked>ประเภทของไฟ</ion-label>
           <ion-select interface="action-sheet" formControlName="ftype">
-            <ion-option value="mute_week" selected="true">ไฟป่า</ion-option>
-            <ion-option value="enable">เผาพื้นที่การเกษตร</ion-option>
-            <ion-option value="mute">ไฟข้างทาง</ion-option>
+            <ion-option value="ไฟป่า" selected="true">ไฟป่า</ion-option>
+            <ion-option value="เผาพื้นที่การเกษตร">เผาพื้นที่การเกษตร</ion-option>
+            <ion-option value="ไฟข้างทาง">ไฟข้างทาง</ion-option>
           </ion-select>
         </ion-item>
 
@@ -33,8 +31,6 @@
         <ion-label color="primary" stacked>รายละเอียดอื่น ๆ</ion-label>
         <ion-input type="text" formControlName="fdesc" placeholder="กรอกรายละเอียดเกี่ยวกับสถานที่"></ion-input>
       </ion-item>
-
-
 
     </ion-list>
     <ion-card>
