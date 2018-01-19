@@ -4,9 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-//import { ShareService } from '../../providers/service/share';
-
-import {Geolocation} from '@ionic-native/geolocation';
+import { Geolocation } from '@ionic-native/geolocation';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -25,6 +24,8 @@ export class AddDataPage {
   public ftype : FormControl;
   public imageURI:any;
   public imageFileName:any;
+
+  public stockKey: string;
   
   constructor(
     private transfer: FileTransfer,
@@ -36,7 +37,8 @@ export class AddDataPage {
     public modalCtrl: ModalController,
     public view: ViewController,
     public http: HttpClient,    
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private storage: Storage
     //public shareService: ShareService
   ) {    
     //this.pos = navParams.get('pos');
@@ -54,15 +56,23 @@ export class AddDataPage {
   }
 
   ionViewDidLoad() {
-    this.fineLocation();
+    this.findLocation();
+    this.getStorage();
+  }
+
+  getStorage(){    
+    this.storage.length().then(res =>{
+      this.stockKey = "data"+(res+1);
+      //console.log(this.stockKey);
+    });    
   }  
 
-  fineLocation(){
+  findLocation(){
     this.geolocation.getCurrentPosition().then((res) => {   
       this.pos=[res.coords.latitude, res.coords.longitude];
       this.lat = res.coords.latitude;
       this.lon = res.coords.longitude; 
-      console.log(this.lon+"-"+this.lat);       
+      //console.log(this.lon+"-"+this.lat);       
     })
   } 
 
@@ -82,7 +92,39 @@ export class AddDataPage {
       });
   }
 
-  submit() {
+  storeData(){
+    let loader = this.loadingCtrl.create({content: "กำลังบันทึกข้อมูล.."});    
+    let fplace = this.reportForm.controls['fplace'].value;    
+    let ftype = this.reportForm.controls['ftype'].value;
+    let fdesc = this.reportForm.controls['fdesc'].value;
+    let lat = this.lat;
+    let lon = this.lon;
+    let img64 = this.imageFileName;
+    //let usrId = this.usrData.id_user;
+    //let usrEmail = this.usrData.email_user;
+
+    this.storage.set(this.stockKey,{
+      'key': this.stockKey,
+      'lat': lat,
+      'lon': lon,
+      'fplace': fplace,
+      'fdesc': fdesc,
+      'ftype': ftype,
+      'img': img64,
+      'fname': 'fnamedasdada',
+      'user_id': 1
+    }).then(
+      (res) => {
+        console.log('Stored item!');      
+        this.resetForm();
+      },
+      (error) => {
+        console.error('Error storing item', error)
+      }
+    );
+  }
+
+  sendData() {
     let loader = this.loadingCtrl.create({content: "กำลังบันทึกข้อมูล.."});    
     let fplace = this.reportForm.controls['fplace'].value;    
     let ftype = this.reportForm.controls['ftype'].value;
@@ -100,18 +142,15 @@ export class AddDataPage {
       'fdesc': fdesc,
       'ftype': ftype,
       'img': img64,
-      'fname': 'fname',
-      'user_id': 12
+      'fname': 'fnamedasdada',
+      'user_id': 1
     });
-    
-    console.log(data);
-    
+        
     loader.present();    
     this.http.post('http://119.59.125.191/service/omfs_report.php', data)
-    .subscribe(res => {
-      
+    .subscribe(res => {      
       loader.dismiss(); 
-      this.closeModal();      
+      this.resetForm();      
       let alert=this.alertCtrl.create({
         title: 'ส่งข้อมูลสำเร็จ!',
         subTitle: 'ข้อมูลของคุณถูกส่งเข้าสู่ระบบเรียบร้อยแล้ว',
@@ -136,7 +175,7 @@ export class AddDataPage {
     fileTransfer.upload(this.imageURI, 'http://119.59.125.191/service/omfs_upload.php', options)
     .then(res => {   
       loader.dismiss(); 
-      this.closeModal();      
+      this.resetForm();      
       let alert=this.alertCtrl.create({
         title: 'ส่งข้อมูลสำเร็จ!',
         subTitle: 'ข้อมูลของคุณถูกส่งเข้าสู่ระบบเรียบร้อยแล้ว',
@@ -148,7 +187,7 @@ export class AddDataPage {
     });
   }  
    
-  closeModal() {
+  resetForm() {
     this.reportForm.reset();
     //this.view.dismiss();
     //this.navCtrl.setRoot(MapPage, this.dat)

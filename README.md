@@ -1,7 +1,7 @@
 # OMFS
 Offline Mobile GIS Field Survey 
 
-ionic gear 
+ionic gear โอมมมม.... ลงตามนี้แล้วจะโชคดี
 ```bash
 $ npm install --save leaflet
 $ npm install --save leaflet.gridlayer.googlemutant
@@ -15,6 +15,6 @@ $ npm install --save @ionic-native/file-transfer
 $ ionic cordova plugin add cordova-plugin-camera --save 
 $ npm install --save @ionic-native/camera 
 
-$ ionic cordova plugin add cordova-plugin-googlemaps --save
-$ npm install --save @ionic-native/google-maps
+$ ionic cordova plugin add cordova-sqlite-storage
+$ npm install --save @ionic/storage
 ```

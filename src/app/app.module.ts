@@ -7,6 +7,7 @@ import { Camera } from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 import { AboutPage } from '../pages/about/about';
@@ -20,6 +21,7 @@ import { LogoutPage } from '../pages/logout/logout';
 import { LocationPage } from '../pages/location/location';
 import { Chart_1Page } from '../pages/chart-1/chart-1';
 import { AddDataPage } from '../pages/add-data/add-data';
+import { StockPage } from '../pages/stock/stock';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -37,15 +39,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LogoutPage,
     Chart_1Page,
     LocationPage,
-    AddDataPage
-
+    AddDataPage,
+    StockPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule, 
     FormsModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -60,7 +63,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LogoutPage,
     Chart_1Page,
     LocationPage,
-    AddDataPage
+    AddDataPage,
+    StockPage
   ],
   providers: [
     StatusBar,

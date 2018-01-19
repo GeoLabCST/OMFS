@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ModalController, Modal, AlertController} from 'ionic-angular';
+import {NavController, NavParams, ModalController, Modal, AlertController} from 'ionic-angular';
 
 import {HttpClient} from '@angular/common/http';
 import {Geolocation} from '@ionic-native/geolocation';

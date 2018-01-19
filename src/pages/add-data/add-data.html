@@ -40,10 +40,10 @@
       <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
     </button>
     <hr>
-    <button ion-button type="submit" [disabled]="!reportForm.valid" (click)="submit()">ส่งข้อมูล</button>
-    <button ion-button type="submit" [disabled]="!reportForm.valid" (click)="submit()">บันทึกข้อมูล</button>
+    <button ion-button type="submit" [disabled]="!reportForm.valid" (click)="sendData()">ส่งข้อมูล</button>
+    <button ion-button type="submit" [disabled]="!reportForm.valid" (click)="storeData()">บันทึกข้อมูล</button>
     <button ion-button color="light" type="submit" [disabled]="!reportForm.valid" (click)="closeModal()">ล้างข้อมูล</button>
   </form>
   <!-- <button ion-button (click)="closeModal()">แสดงแผนที่</button> -->
-
+  
 </ion-content>
