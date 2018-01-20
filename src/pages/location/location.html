@@ -1,4 +1,4 @@
-<ion-header id="isnre-font">
+<ion-header id="kanit-font">
 
   <ion-navbar>
     <ion-title>เลือกพื้นที่</ion-title>
@@ -7,13 +7,13 @@
 </ion-header>
 
 
-<ion-content padding id="isnre-font">
+<ion-content padding id="kanit-font">
     เลือกจังหวัด
     <ion-list>
         <ion-item>
             <ion-label>จังหวัด</ion-label>
             <ion-select [(ngModel)]="prov_ls" multiple="false" interface="action-sheet" (ngModelChange)="initializeAmp($event)">
-                <ion-option *ngFor="let pro of pros" [value] = "pro" >{{pro.prov_namt}}</ion-option>
+                <ion-option *ngFor="let pro of pros" [value] = "pro" >{{pro.pv_tn}}</ion-option>
             </ion-select>
           </ion-item>
       </ion-list>
@@ -24,7 +24,7 @@
         <ion-item>
             <ion-label>อำเภอ</ion-label>
             <ion-select [(ngModel)]="amp_ls" multiple="false" interface="action-sheet" (ngModelChange)="initializeTam($event)">
-                <ion-option *ngFor="let amp of amps" [value] = "amp">{{amp.amp_namt}}</ion-option>
+                <ion-option *ngFor="let amp of amps" [value] = "amp">{{amp.ap_tn}}</ion-option>
             </ion-select>
           </ion-item>
       </ion-list>
@@ -35,7 +35,7 @@
         <ion-item>
             <ion-label>ตำบล</ion-label>
             <ion-select [(ngModel)]="tam_ls" multiple="false" interface="action-sheet" (ngModelChange)="tamExt($event); ">
-                <ion-option *ngFor="let tam of tams" [value] = "tam">{{tam.tam_namt}}</ion-option>
+                <ion-option *ngFor="let tam of tams" [value] = "tam">{{tam.tb_tn}}</ion-option>
             </ion-select>
           </ion-item>
       </ion-list>

@@ -102,67 +102,67 @@ export class HomePage {
 
   locFn(locType, locCode, bbox){
     if(locType=='all'){
-      this.alreadyLyr.push('c02_province');
+      this.alreadyLyr.push('province');
       this.alreadyTh.push('ขอบเขตจังหวัด');
-      this.lyr = 'c02_province';
+      this.lyr = 'province';
       this.mapOtp = {
-        layers: 'isnre:'+this.lyr,
+        layers: 'omfs:'+this.lyr,
         format: 'image/png',
         zIndex: 5,
         transparent: true
       }
-      L.tileLayer.wms("http://119.59.125.189/geoserver/ows?", this.mapOtp).addTo(this.map);
+      L.tileLayer.wms("http://119.59.125.191/geoserver/ows?", this.mapOtp).addTo(this.map);
       this.map.fitBounds([
-        [7.09056009354302, 104.18985100564],
-        [19.7358085431644, 98.6106951024982]
+        [17.6855866502619, 101.357029350686],
+        [20.4649255155991, 99.2583319620092]
       ]);
     }else if(locType=='tam'){
-      this.alreadyLyr.push('c04_subdistrict');
+      this.alreadyLyr.push('tambon');
       this.alreadyTh.push('ขอบเขตตำบล');
-      this.lyr = 'c04_subdistrict';
-      this.cql = 'tamcode=' + locCode;
+      this.lyr = 'tambon';
+      this.cql = 'tb_code=' + locCode;
       this.mapOtp = {
-        layers: 'isnre:'+this.lyr,
+        layers: 'omfs:'+this.lyr,
         format: 'image/png',
         transparent: true,
         zIndex: 5,
         CQL_FILTER: this.cql 
       }
-      L.tileLayer.wms("http://119.59.125.189/geoserver/ows?", this.mapOtp).addTo(this.map);
+      L.tileLayer.wms("http://119.59.125.191/geoserver/ows?", this.mapOtp).addTo(this.map);
       this.map.fitBounds([
         [Number(bbox[1]), Number(bbox[2])],
         [Number(bbox[3]), Number(bbox[0])]
       ]);
     }else if(locType=='amp'){
-      this.alreadyLyr.push('c03_district');      
+      this.alreadyLyr.push('amphoe');      
       this.alreadyTh.push('ขอบเขตอำเภอ');
-      this.lyr = 'c03_district';
-      this.cql = 'ampcode=' + locCode;
+      this.lyr = 'amphoe';
+      this.cql = 'ap_code=' + locCode;
       this.mapOtp = {
-        layers: 'isnre:'+this.lyr,
+        layers: 'omfs:'+this.lyr,
         format: 'image/png',
         transparent: true,
         zIndex: 5,
         CQL_FILTER: this.cql 
       }
-      L.tileLayer.wms("http://119.59.125.189/geoserver/ows?", this.mapOtp).addTo(this.map);  
+      L.tileLayer.wms("http://119.59.125.191/geoserver/ows?", this.mapOtp).addTo(this.map);  
       this.map.fitBounds([
         [Number(bbox[1]), Number(bbox[2])],
         [Number(bbox[3]), Number(bbox[0])]
       ]);
     }else if(locType=='pro'){
-      this.alreadyLyr.push('c02_province');
+      this.alreadyLyr.push('province');
       this.alreadyTh.push('ขอบเขตจังหวัด');
-      this.lyr = 'c02_province';
-      this.cql = 'procode=' + locCode;
+      this.lyr = 'province';
+      this.cql = 'pv_code=' + locCode;
       this.mapOtp = {
-        layers: 'isnre:'+this.lyr,
+        layers: 'omfs:'+this.lyr,
         format: 'image/png',
         transparent: true,
         zIndex: 5,
         CQL_FILTER: this.cql
       }
-      L.tileLayer.wms("http://119.59.125.189/geoserver/ows?", this.mapOtp).addTo(this.map); 
+      L.tileLayer.wms("http://119.59.125.191/geoserver/ows?", this.mapOtp).addTo(this.map); 
       this.map.fitBounds([
         [Number(bbox[1]), Number(bbox[2])],
         [Number(bbox[3]), Number(bbox[0])]
@@ -184,21 +184,21 @@ export class HomePage {
       
       if(typeof this.locType =='undefined'){
         this.mapOtp = {
-          layers: 'isnre:'+this.lyr,
+          layers: 'omfs:'+this.lyr,
           format: 'image/png',
           zIndex: 5,
           transparent: true
         }
       }else{
         this.mapOtp = {
-          layers: 'isnre:'+this.lyr,
+          layers: 'omfs:'+this.lyr,
           format: 'image/png',
           transparent: true,
           zIndex: 5,
           CQL_FILTER: this.cql
         }
       }        
-      L.tileLayer.wms("http://119.59.125.189/geoserver/ows?", this.mapOtp).addTo(this.map);      
+      L.tileLayer.wms("http://119.59.125.191/geoserver/ows?", this.mapOtp).addTo(this.map);      
     }    
   }
     
@@ -291,7 +291,6 @@ export class HomePage {
       modalAdd.present();
       //console.log(this.pos);
     }
-  }
-    
+  }    
 
 }

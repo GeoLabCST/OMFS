@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header id="kanit-font">
 
   <ion-navbar>
     <ion-title>สัญลักษณ์</ion-title>
@@ -7,9 +7,9 @@
 </ion-header>
 
 
-<ion-content padding id="isnre-font">
+<ion-content padding id="kanit-font">
   <ion-item *ngFor="let l of lyr_ls"><p>{{l.lyr_th}}</p>
-      <img [src]="'http://119.59.125.189/geoserver/wms?Service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=25&HEIGHT=25&LAYER=isnre:' + l.lyr">
+      <img [src]="'http://119.59.125.191/geoserver/wms?Service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=25&HEIGHT=25&LAYER=omfs:' + l.lyr">
   </ion-item>
   <button ion-button (click)="closeLegend()">กลับหน้าแผนที่</button>
 </ion-content>

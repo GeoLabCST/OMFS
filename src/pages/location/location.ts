@@ -43,7 +43,7 @@ export class LocationPage {
   }
 
   initializePro() {
-    this.http.get('http://119.59.125.189/service/isnre_prov.php')
+    this.http.get('http://119.59.125.191/service/omfs_prov.php')
     .subscribe(res => {
       this.pros = res;
       //console.log(res);
@@ -53,7 +53,7 @@ export class LocationPage {
   }
 
   initializeAmp(provcode: any) {
-    this.http.get('http://119.59.125.189/service/isnre_amp.php?procode='+provcode.procode)
+    this.http.get('http://119.59.125.191/service/omfs_amp.php?procode='+provcode.pv_code)
     .subscribe(res => {
       this.amps = res;
       //console.log(res);
@@ -61,7 +61,7 @@ export class LocationPage {
       console.log("Oooops!");
     });
 
-    this.http.get('http://119.59.125.189/service/isnre_prov.php?procode='+provcode.procode)
+    this.http.get('http://119.59.125.191/service/omfs_prov.php?procode='+provcode.pv_code)
     .subscribe(res => {
       this.bbox = [res[0].xmin, res[0].ymin, res[0].xmax, res[0].ymax];
       //console.log(this.bbox);
@@ -71,7 +71,7 @@ export class LocationPage {
   }
 
   initializeTam(ampcode: any) {
-    this.http.get('http://119.59.125.189/service/isnre_tam.php?ampcode='+ampcode.ampcode)
+    this.http.get('http://119.59.125.191/service/omfs_tam.php?ampcode='+ampcode.ap_code)
     .subscribe(res => {
       this.tams = res;
       //console.log(res);
@@ -79,7 +79,7 @@ export class LocationPage {
       console.log("Oooops!");
     });
 
-    this.http.get('http://119.59.125.189/service/isnre_amp.php?ampcode='+ampcode.ampcode)
+    this.http.get('http://119.59.125.191/service/omfs_amp.php?ampcode='+ampcode.ap_code)
     .subscribe(res => {
       this.bbox = [res[0].xmin, res[0].ymin, res[0].xmax, res[0].ymax];
       //console.log(this.bbox);
@@ -89,7 +89,7 @@ export class LocationPage {
   }
 
   tamExt(tamcode: any) {
-    this.http.get('http://119.59.125.189/service/isnre_tam.php?tamcode='+tamcode.tamcode)
+    this.http.get('http://119.59.125.191/service/omfs_tam.php?tamcode='+tamcode.tb_code)
     .subscribe(res => {
       this.bbox = [res[0].xmin, res[0].ymin, res[0].xmax, res[0].ymax];
       //console.log(this.bbox);
@@ -98,39 +98,6 @@ export class LocationPage {
     });
   }
 
-  // initializeLyr() {
-  //   this.http.get('http://119.59.125.189/service/isnre_lyr.php')
-  //   .subscribe(res => {
-  //     this.lyrs = res;
-  //   }, error => {
-  //     console.log("Oooops!");
-  //   });
-  // }
-
-  // itemSelected(item: string) {
-  //   let lyr=[];
-  //   let lyn=[];
-
-  //   for(let l in this.lyr_ls){
-  //     lyr.push(this.lyr_ls[l].lyr); 
-  //     lyn.push(this.lyr_ls[l].lyr_desc);     
-  //   }
-
-  //   console.log(lyr+'-'+lyn);  
-
-  //   this.dat = {
-  //     pro: this.prov_ls,
-  //     amp: this.amp_ls,
-  //     tam: this.tam_ls,
-  //     lyr_ls: this.lyr_ls,
-  //     lyr: lyr,
-  //     lyn: lyn,
-  //     bbox: this.bbox
-  //   }
-  //   this.navCtrl.setRoot(MapPage, this.dat)
-  //   this.view.dismiss(this.dat);
-  // }
-
   itemSelected(item: string) {
     let locType: string;
     let locName: string;
@@ -138,16 +105,16 @@ export class LocationPage {
     
     if(typeof this.tam_ls !== 'undefined'){
       locType="tam";
-      locName='ต.'+this.tam_ls.tam_namt+' อ.'+this.amp_ls.amp_namt+' จ.'+this.prov_ls.prov_namt;
-      locCode=this.tam_ls.tamcode;
+      locName='ต.'+this.tam_ls.tb_tn+' อ.'+this.amp_ls.ap_th+' จ.'+this.prov_ls.pv_tn;
+      locCode=this.tam_ls.tb_code;
     }else if(typeof this.amp_ls !== 'undefined'){
       locType="amp";
-      locName='อ.'+this.amp_ls.amp_namt+' จ.'+this.prov_ls.prov_namt;
-      locCode=this.amp_ls.ampcode;
+      locName='อ.'+this.amp_ls.ap_th+' จ.'+this.prov_ls.pv_tn;
+      locCode=this.amp_ls.ap_code;
     }else if(typeof this.prov_ls !== 'undefined'){
       locType="pro";
-      locName='จ.'+this.prov_ls.prov_namt;
-      locCode=this.prov_ls.procode;
+      locName='จ.'+this.prov_ls.pv_tn;
+      locCode=this.prov_ls.pv_code;
     }else{
       locType="all";
       locName="all";
