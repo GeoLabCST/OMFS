@@ -22,8 +22,8 @@ export class AddDataPage {
   public fplace : FormControl;
   public fdesc : FormControl;
   public ftype : FormControl;
-  public imageURI:any;
-  public imageFileName:any;
+  public imageName:any;
+  public imageFile:any;
 
   public stockKey: string;
   
@@ -77,19 +77,37 @@ export class AddDataPage {
   } 
 
   takePicture() {
-    const imgCam: CameraOptions={
+    const camOpt: CameraOptions={
       quality: 50,
       destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.CAMERA,
-      encodingType: this.camera.EncodingType.JPEG
-    }
-    
-    this.camera.getPicture(imgCam).then((imageData) => {
-        this.imageURI = imageData;
-        this.imageFileName=imageData.substr(imageData.lastIndexOf('/') + 1);
+      encodingType: this.camera.EncodingType.JPEG,
+      correctOrientation: true
+    }    
+    this.camera.getPicture(camOpt).then((imageData) => {
+        this.imageName = imageData;
+        this.imageFile=imageData.substr(imageData.lastIndexOf('/') + 1);
       }, (err) => {
         console.log(err);
       });
+  }
+
+  openGallery() {
+    const camOpt: CameraOptions={      
+      quality: 100,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      correctOrientation: true      
+      //targetWidth: 1000,
+      //targetHeight: 1000,
+    }
+    this.camera.getPicture(camOpt).then((imageData) => {
+      this.imageName = imageData;
+      this.imageFile=imageData.substr(imageData.lastIndexOf('/') + 1);
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   storeData(){
@@ -99,7 +117,8 @@ export class AddDataPage {
     let fdesc = this.reportForm.controls['fdesc'].value;
     let lat = this.lat;
     let lon = this.lon;
-    let img64 = this.imageFileName;
+    let imgName = this.imageName;
+    let imgFile = this.imageFile;
     //let usrId = this.usrData.id_user;
     //let usrEmail = this.usrData.email_user;
 
@@ -110,7 +129,8 @@ export class AddDataPage {
       'fplace': fplace,
       'fdesc': fdesc,
       'ftype': ftype,
-      'img': img64,
+      'imgName': imgName,
+      'imgFile': imgFile,
       'fname': 'fnamedasdada',
       'user_id': 1
     }).then(
@@ -122,6 +142,8 @@ export class AddDataPage {
         console.error('Error storing item', error)
       }
     );
+
+
   }
 
   sendData() {
@@ -131,7 +153,7 @@ export class AddDataPage {
     let fdesc = this.reportForm.controls['fdesc'].value;
     let lat = this.lat;
     let lon = this.lon;
-    let img64 = this.imageFileName;
+    let img64 = this.imageFile;
     //let usrId = this.usrData.id_user;
     //let usrEmail = this.usrData.email_user;
 
@@ -166,13 +188,13 @@ export class AddDataPage {
     const fileTransfer: FileTransferObject = this.transfer.create();
     let options: FileUploadOptions = {
       fileKey: 'file',
-      fileName: this.imageFileName,      
+      fileName: this.imageFile,      
       chunkedMode: false,
       mimeType: "image/jpeg",
       headers: {}
     }
   
-    fileTransfer.upload(this.imageURI, 'http://119.59.125.191/service/omfs_upload.php', options)
+    fileTransfer.upload(this.imageName, 'http://119.59.125.191/service/omfs_upload.php', options)
     .then(res => {   
       loader.dismiss(); 
       this.resetForm();      
@@ -189,6 +211,7 @@ export class AddDataPage {
    
   resetForm() {
     this.reportForm.reset();
+    this.imageName='';
     //this.view.dismiss();
     //this.navCtrl.setRoot(MapPage, this.dat)
   }
