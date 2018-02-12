@@ -9,24 +9,32 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-item-sliding  *ngFor="let s of stock">
+    <ion-item-sliding *ngFor="let s of stock">
       <ion-item>
-        <!-- <ion-avatar item-start>
-          <img src="img/slimer.png">
-        </ion-avatar> -->
-        <h2>{{s.fplace}}</h2>
-        {{s.ftype}}
+        <ion-thumbnail item-start>
+          <!-- <img src="http://119.59.125.191/service/uploads/{{c.img}}"> -->
+          <img [src]="dom.bypassSecurityTrustUrl(s.imgfile)" />
+        </ion-thumbnail>
+        <h4>สถานที่ : {{s.ftype}}</h4>
+        <p>ประเภทไฟ : {{s.ftype}}</p>
+        <p>คำอธิบาย : {{s.fdesc}} </p>
+        <p>วันที่ : {{s.ddmmyy}} </p>
+        <p>พิกัด : {{s.lat}}, {{s.lon}} </p>
 
-        <ion-note item-end>เลื่อนดูรายการ</ion-note>
+        <ion-note item-end>เลื่อน</ion-note>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="primary" (click)="deleteData(s.key)">
-          <ion-icon name="text"></ion-icon>
+        <button ion-button (click)="deleteData(s.key)">
+          <ion-icon name="trash" color="danger"></ion-icon>
           ลบ
         </button>
         <!-- <button ion-button color="secondary" (click)="sendData(s.key,s.lat,s.lon,s.fplace,s.fdesc,s.ftype,s.img)"> -->
-        <button ion-button color="secondary" (click)="sendData(s.key)">
-          <ion-icon name="call"></ion-icon>
+        <button ion-button (click)="editData(s.key)">
+          <ion-icon name="create"></ion-icon>
+          แก้ใข
+        </button>
+        <button ion-button (click)="sendData(s.key)">
+          <ion-icon name="send" color="green"></ion-icon>
           ส่ง
         </button>
       </ion-item-options>

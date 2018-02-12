@@ -51,7 +51,7 @@ export class WelcomePage {
     });
 
     loader.present();    
-    this.http.post('http://localhost/libs/checklogin_omfs.php', data)
+    this.http.post('http://119.59.125.191/service/checklogin_omfs.php', data)
     .subscribe(res => {
        this.res = res;
        console.log(res);
@@ -67,12 +67,6 @@ export class WelcomePage {
       }else if(this.res.message == 'success'){
          loader.dismiss(); 
           this.gotoindex();      
-          let alert=this.alertCtrl.create({
-            title: 'E-Mail และรหัสผ่านถูกต้อง',
-            subTitle: 'กำลังเข้าสู่ระบบ',
-            buttons:['ok']
-          });
-          // alert.present();     
       }      
     }, error => {
       console.log("Oooops!");

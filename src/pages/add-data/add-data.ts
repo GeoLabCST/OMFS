@@ -17,12 +17,14 @@ export class AddDataPage {
   public lat: number;
   public lon: number;
   public usrData: any;
+  public yymmdd: any;
+  public ddmmyy: any;
 
   public reportForm : FormGroup;
   public fplace : FormControl;
   public fdesc : FormControl;
   public ftype : FormControl;
-  public imageName:any;
+  public imageData:any;
   public imageFile:any;
 
   public stockKey: string;
@@ -58,6 +60,10 @@ export class AddDataPage {
   ionViewDidLoad() {
     this.findLocation();
     this.getStorage();
+    let today= new Date();
+    this.yymmdd = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    this.ddmmyy = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+    //console.log(Date.now());
   }
 
   getStorage(){    
@@ -78,62 +84,60 @@ export class AddDataPage {
 
   takePicture() {
     const camOpt: CameraOptions={
-      quality: 50,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      sourceType: this.camera.PictureSourceType.CAMERA,
+      quality: 20,
+      //destinationType: this.camera.DestinationType.FILE_URI,
+      // sourceType: this.camera.PictureSourceType.CAMERA,
+      // encodingType: this.camera.EncodingType.JPEG,
+      // correctOrientation: true
+
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
-      correctOrientation: true
+      mediaType: this.camera.MediaType.PICTURE
     }    
     this.camera.getPicture(camOpt).then((imageData) => {
-        this.imageName = imageData;
-        this.imageFile=imageData.substr(imageData.lastIndexOf('/') + 1);
+        this.imageData = imageData;
+        //this.imageFile=imageData.substr(imageData.lastIndexOf('/') + 1);
+        this.imageFile='data:image/jpeg;base64,' + imageData;
       }, (err) => {
         console.log(err);
       });
   }
 
-  openGallery() {
-    const camOpt: CameraOptions={      
-      quality: 100,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      correctOrientation: true      
-      //targetWidth: 1000,
-      //targetHeight: 1000,
-    }
-    this.camera.getPicture(camOpt).then((imageData) => {
-      this.imageName = imageData;
-      this.imageFile=imageData.substr(imageData.lastIndexOf('/') + 1);
-    }, (err) => {
-      console.log(err);
-    });
-  }
+  // openGallery() {
+  //   const camOpt: CameraOptions={      
+  //     quality: 100,
+  //     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+  //     destinationType: this.camera.DestinationType.FILE_URI,
+  //     encodingType: this.camera.EncodingType.JPEG,
+  //     correctOrientation: true      
+  //     //targetWidth: 1000,
+  //     //targetHeight: 1000,
+  //   }
+  //   this.camera.getPicture(camOpt).then((imageData) => {
+  //     this.imageName = imageData;
+  //     this.imageFile=imageData.substr(imageData.lastIndexOf('/') + 1);
+  //   }, (err) => {
+  //     console.log(err);
+  //   });
+  // }
 
   storeData(){
-    let loader = this.loadingCtrl.create({content: "กำลังบันทึกข้อมูล.."});    
-    let fplace = this.reportForm.controls['fplace'].value;    
-    let ftype = this.reportForm.controls['ftype'].value;
-    let fdesc = this.reportForm.controls['fdesc'].value;
-    let lat = this.lat;
-    let lon = this.lon;
-    let imgName = this.imageName;
-    let imgFile = this.imageFile;
-    //let usrId = this.usrData.id_user;
-    //let usrEmail = this.usrData.email_user;
-
-    this.storage.set(this.stockKey,{
+    let data = {
       'key': this.stockKey,
-      'lat': lat,
-      'lon': lon,
-      'fplace': fplace,
-      'fdesc': fdesc,
-      'ftype': ftype,
-      'imgName': imgName,
-      'imgFile': imgFile,
+      'lat': 19.829796,
+      'lon': 99.772420,
+      'fplace': this.reportForm.controls['fplace'].value,
+      'fdesc': this.reportForm.controls['fdesc'].value,
+      'ftype': this.reportForm.controls['ftype'].value,
+      'yymmdd': this.yymmdd,
+      'ddmmyy': this.ddmmyy,
+      'img': this.imageData,
+      'imgfile': this.imageFile,
       'fname': 'fnamedasdada',
       'user_id': 1
-    }).then(
+    };
+
+    this.storage.set(this.stockKey,data).then(
       (res) => {
         console.log('Stored item!');      
         this.resetForm();
@@ -142,28 +146,20 @@ export class AddDataPage {
         console.error('Error storing item', error)
       }
     );
-
-
   }
 
   sendData() {
     let loader = this.loadingCtrl.create({content: "กำลังบันทึกข้อมูล.."});    
-    let fplace = this.reportForm.controls['fplace'].value;    
-    let ftype = this.reportForm.controls['ftype'].value;
-    let fdesc = this.reportForm.controls['fdesc'].value;
-    let lat = this.lat;
-    let lon = this.lon;
-    let img64 = this.imageFile;
-    //let usrId = this.usrData.id_user;
-    //let usrEmail = this.usrData.email_user;
 
     let data = JSON.stringify({
-      'lat': lat,
-      'lon': lon,
-      'fplace': fplace,
-      'fdesc': fdesc,
-      'ftype': ftype,
-      'img': img64,
+      'lat': 19.642715,
+      'lon': 99.833380,
+      'fplace': this.reportForm.controls['fplace'].value,
+      'fdesc': this.reportForm.controls['fdesc'].value,
+      'ftype': this.reportForm.controls['ftype'].value,
+      'yymmdd': this.yymmdd,
+      'img': this.imageData,
+      'imgfile': this.imageFile,
       'fname': 'fnamedasdada',
       'user_id': 1
     });
@@ -183,35 +179,11 @@ export class AddDataPage {
       console.log("Oooops!");
       loader.dismiss();
     });
-
-    //upload image
-    const fileTransfer: FileTransferObject = this.transfer.create();
-    let options: FileUploadOptions = {
-      fileKey: 'file',
-      fileName: this.imageFile,      
-      chunkedMode: false,
-      mimeType: "image/jpeg",
-      headers: {}
-    }
-  
-    fileTransfer.upload(this.imageName, 'http://119.59.125.191/service/omfs_upload.php', options)
-    .then(res => {   
-      loader.dismiss(); 
-      this.resetForm();      
-      let alert=this.alertCtrl.create({
-        title: 'ส่งข้อมูลสำเร็จ!',
-        subTitle: 'ข้อมูลของคุณถูกส่งเข้าสู่ระบบเรียบร้อยแล้ว',
-        buttons:['ok']
-      });
-      alert.present(); 
-    }, (err) => {
-      loader.dismiss();
-    });
   }  
    
   resetForm() {
     this.reportForm.reset();
-    this.imageName='';
+    this.imageFile='';
     //this.view.dismiss();
     //this.navCtrl.setRoot(MapPage, this.dat)
   }

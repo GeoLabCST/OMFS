@@ -1,0 +1,49 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>editdata</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding id="isnre-font">
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label stacked>ตำแหน่ง</ion-label>
+      <ion-input [(ngModel)]="pos" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>สถานที่</ion-label>
+      <ion-input [(ngModel)]="fplace" type="text">{{fplace}}</ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>ตำแหน่งไฟ</ion-label>
+      <ion-input [(ngModel)]="ftype" type="text">{{ftype}}</ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>รายละเอียดอื่น ๆ</ion-label>
+      <ion-input [(ngModel)]="fdesc" type="text">{{fdesc}}</ion-input>
+    </ion-item>
+
+  <ion-item>
+      <ion-label stacked>วันที่รายงาน</ion-label>
+      <ion-input [(ngModel)]="ddmmyy" type="text">{{fdesc}}</ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-card>
+    <!-- <img [src]="imageFile" *ngIf="imageFile" /> -->
+    <img [src]="dom.bypassSecurityTrustUrl(imageFile)"/>
+  </ion-card>
+  <button ion-button color="danger" round icon-left (click)="openGallery()">
+    <ion-icon ios="ios-camera" md="md-camera"></ion-icon>เลือกภาพถ่าย
+  </button>
+  <button ion-button type="submit" (click)="sendData()">ส่งข้อมูล</button>
+  <button ion-button type="submit" (click)="closeModal()">ยกเลิก</button>
+</ion-content>

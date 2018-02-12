@@ -1,17 +1,28 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      รายงานสถานการณ์ไฟป่า
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+<ion-content class="app-font-25">
+   <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+   <ion-list>
+    <ion-item *ngFor="let s of report">
+      <ion-thumbnail  item-start>
+        <img src="http://119.59.125.191/service/uploads/{{s.img}}">
+      </ion-thumbnail>
+      <h4>สถานที่ : {{s.ftype}}</h4>
+      <p>ประเภทไฟ : {{s.ftype}}</p>
+      <p>คำอธิบาย : {{s.fdesc}} </p>
+      <p>วันที่ : {{s.acq_date}} </p>
+      <p>พิกัด : {{s.lat}}, {{s.lon}} </p>
     </ion-item>
   </ion-list>
+
+
 </ion-content>

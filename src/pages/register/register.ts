@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController} from 'ionic-angular';
+import {IonicPage, NavController, LoadingController, ToastController, AlertController} from 'ionic-angular';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
@@ -111,7 +111,7 @@ export class RegisterPage {
     });
 
     loader.present();    
-    this.http.post('http://localhost/libs/add_user_omfs.php', data)
+    this.http.post('http://119.59.125.191/libs/add_user_omfs.php', data)
     .subscribe(res => {
       this.res = res;
     	
