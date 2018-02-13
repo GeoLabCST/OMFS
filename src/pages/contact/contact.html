@@ -1,9 +1,12 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      รายงานสถานการณ์ไฟป่า
-    </ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-title>รายงานสถานการณ์ไฟป่า</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="reload()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="app-font-25">

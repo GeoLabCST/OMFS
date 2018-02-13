@@ -12,19 +12,17 @@ export class ContactPage {
   constructor(
   	public navCtrl: NavController,
     public http: HttpClient,
-  ) {
-  	
+  ) {  	
   }
 
- 	ionViewDidLoad(){
-    //this.initializePro()
-    //console.log('ionViewDidLoad');
-   } 
-   
-   ionViewWillEnter(){
-    console.log('ionViewWillEnter');
+  ionViewWillEnter(){
     this.initializePro();
-   }
+  }
+
+  reload(){
+    this.initializePro();
+  }
+
 
   initializePro() {
     this.http.get('http://119.59.125.191/service/service_fire_report.php')
@@ -38,11 +36,11 @@ export class ContactPage {
 
   doRefresh(refresher) {
     //console.log('Begin async operation', refresher);
-
+    this.initializePro();
     setTimeout(() => {
-      console.log('Async operation has ended');
+      //console.log('Async operation has ended');
       refresher.complete();
-    }, 2000);
+    }, 500);
   }
 
 }

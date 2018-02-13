@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ModalController, Modal, LoadingController, AlertController} from 'ionic-angular';
 import {HttpClient} from '@angular/common/http';
-import {FileTransfer, FileUploadOptions, FileTransferObject} from '@ionic-native/file-transfer';
+//import {FileTransfer, FileUploadOptions, FileTransferObject} from '@ionic-native/file-transfer';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Storage} from '@ionic/storage';
 
@@ -27,7 +27,7 @@ export class StockPage {
   // public data: any;
 
   constructor(
-    private transfer : FileTransfer, 
+    //private transfer : FileTransfer, 
     public navCtrl : NavController, 
     public navParams : NavParams, 
     public loadingCtrl : LoadingController,
@@ -48,7 +48,7 @@ export class StockPage {
         if (res > 0) {
           this.storage.forEach((value, key, index) => {
               this.stock.push(value);
-              console.log(this.stock);
+              //console.log(this.stock);
             })
         }
     });
@@ -70,7 +70,7 @@ export class StockPage {
         'ftype': val.ftype,
         'yymmdd': val.yymmdd,
         'img': val.img,
-        'imgfile': val.imgfile,
+        //'imgfile': val.imgfile,
         'fname': val.fname,
         'user_id': val.user_id
       });

@@ -4,7 +4,8 @@ import {NavController, NavParams, ModalController, Modal, AlertController} from 
 import {HttpClient} from '@angular/common/http';
 import {Geolocation} from '@ionic-native/geolocation';
 import L from 'leaflet';
-import 'leaflet.gridlayer.googlemutant'
+import 'leaflet.gridlayer.googlemutant';
+import 'leaflet-measure/dist/leaflet-measure';
 
 import { LocationPage } from '../location/location';
 
@@ -60,6 +61,21 @@ export class HomePage {
 
   ionViewWillEnter(){
     //this.loadMap();
+  }
+
+  reload(){
+    this.map.remove();  
+
+    setTimeout(() => {        
+    //this.navCtrl.setRoot(this.navCtrl.getActive().component);    
+      this.loadMap();
+        // initial map
+      if(typeof this.locType !== 'undefined'){
+        this.locFn(this.locType, this.locCode, this.bbox);
+      }else{
+        this.locFn("all", "all", "all");
+      }
+    }, 900);
   }
 
   loadMap() {

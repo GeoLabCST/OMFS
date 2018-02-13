@@ -1,21 +1,43 @@
 <ion-header id="kanit-font">
-  <ion-navbar>
+  <ion-toolbar>
     <ion-title>แผนที่</ion-title>
-  </ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="reload()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content id="kanit-font">  
+<ion-content id="kanit-font">
   <ion-fab right bottom>
-      <button ion-fab color="danger"><ion-icon name="arrow-dropup"></ion-icon></button>
-      <ion-fab-list side="top">
-        <button ion-fab (click)="addSelectarea()"><ion-icon name="search" color="green"></ion-icon><ion-label>เลือกพื้นที่</ion-label></button>  
-        <button ion-fab (click)="addLayer()"><ion-icon name="logo-buffer" color="green"></ion-icon><ion-label>ชั้นข้อมูล</ion-label></button>          
-        <button ion-fab (click)="addLegend()"><ion-icon name="bowtie" color="green"></ion-icon><ion-label>สัญลักษณ์</ion-label></button>    
-        <button ion-fab (click)="addMeasure()"><ion-icon name="git-pull-request" color="green"></ion-icon><ion-label>เครื่องมือวัด</ion-label></button>             
-        <button ion-fab (click)="addLocation()"><ion-icon name="locate" color="blue"></ion-icon><ion-label>ตำแหน่งปัจจุบัน</ion-label></button>                           
-        <!-- <button ion-fab (click)="addData()"><ion-icon name="pin" color="red"></ion-icon><ion-label>เพิ่มข้อมูล</ion-label></button> -->
-        
-      </ion-fab-list>
-    </ion-fab>
-<div id="map"></div>
+    <button ion-fab color="danger">
+      <ion-icon name="arrow-dropup"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="addSelectarea()">
+        <ion-icon name="search" color="green"></ion-icon>
+        <ion-label>เลือกพื้นที่</ion-label>
+      </button>
+      <button ion-fab (click)="addLayer()">
+        <ion-icon name="logo-buffer" color="green"></ion-icon>
+        <ion-label>ชั้นข้อมูล</ion-label>
+      </button>
+      <button ion-fab (click)="addLegend()">
+        <ion-icon name="bowtie" color="green"></ion-icon>
+        <ion-label>สัญลักษณ์</ion-label>
+      </button>
+      <button ion-fab (click)="addMeasure()">
+        <ion-icon name="git-pull-request" color="green"></ion-icon>
+        <ion-label>เครื่องมือวัด</ion-label>
+      </button>
+      <button ion-fab (click)="addLocation()">
+        <ion-icon name="locate" color="blue"></ion-icon>
+        <ion-label>ตำแหน่งปัจจุบัน</ion-label>
+      </button>
+      <!-- <button ion-fab (click)="addData()"><ion-icon name="pin" color="red"></ion-icon><ion-label>เพิ่มข้อมูล</ion-label></button> -->
+
+    </ion-fab-list>
+  </ion-fab>
+  <div id="map"></div>
 </ion-content>

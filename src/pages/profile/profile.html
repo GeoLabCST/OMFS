@@ -8,5 +8,24 @@
 
 
 <ion-content padding>
+  <ion-card  >
 
+    <img src="http://119.59.125.191/omfs/img/pic_user/{{usrData.pic_user}}">
+  
+  
+    <ion-item>
+      <ion-icon name="contact" item-start large></ion-icon>
+      <h2>{{usrData.name_user}} {{usrData.lname_user}}</h2>
+      <p>เบอร์โทร : {{usrData.tel_user}}</p>
+    </ion-item>
+  
+    <ion-item>
+      <ion-icon name="pin" item-left large ></ion-icon>
+      <p>จังหวัด : {{usrData.prov_user}}</p>
+      <p>อำเภอ : {{usrData.amp_user}}</p>
+      <p>ตำบล : {{usrData.tam_user}}</p>
+    </ion-item>
+  
+      
+  </ion-card>
 </ion-content>

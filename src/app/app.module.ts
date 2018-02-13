@@ -25,6 +25,8 @@ import { StockPage } from '../pages/stock/stock';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ServiceProvider } from '../providers/service/service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     FileTransfer,
     Camera,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ServiceProvider,
+    ScreenOrientation
   ]
 })
 export class AppModule {}

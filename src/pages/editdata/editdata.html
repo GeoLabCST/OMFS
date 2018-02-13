@@ -38,7 +38,6 @@
   </ion-list>
 
   <ion-card>
-    <!-- <img [src]="imageFile" *ngIf="imageFile" /> -->
     <img [src]="dom.bypassSecurityTrustUrl(imageFile)"/>
   </ion-card>
   <button ion-button color="danger" round icon-left (click)="openGallery()">

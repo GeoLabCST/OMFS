@@ -1,10 +1,10 @@
 page-welcome {
-[default-background] {
-    background-image: url("/../assets/imgs/bg07.jpg");
-    background-repeat: no-repeat;
-    background-size: auto ;
-    @include darkening-blend-mode;
-  }
+    ion-content {
+        background-image: url('../assets/imgs/bg07.jpg');
+        background-repeat: no-repeat;
+        background-size: auto ;
+        @include darkening-blend-mode;
+    }
 	
 	.item.item-input {
 	    background-color:rgba(201, 76, 76, 0.1);

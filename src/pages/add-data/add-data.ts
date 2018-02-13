@@ -3,9 +3,10 @@ import { IonicPage, NavParams, ViewController, LoadingController, AlertControlle
 import { HttpClient } from '@angular/common/http';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+//import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Storage } from '@ionic/storage';
+import { ServiceProvider } from '../../providers/service/service';
 
 @IonicPage()
 @Component({
@@ -30,7 +31,7 @@ export class AddDataPage {
   public stockKey: string;
   
   constructor(
-    private transfer: FileTransfer,
+    //private transfer: FileTransfer,
     public fb : FormBuilder,  
     private camera : Camera, 
     public navParams: NavParams, 
@@ -40,21 +41,22 @@ export class AddDataPage {
     public view: ViewController,
     public http: HttpClient,    
     private geolocation: Geolocation,
-    private storage: Storage
-    //public shareService: ShareService
+    private storage: Storage,
+    public service: ServiceProvider
   ) {    
     //this.pos = navParams.get('pos');
     this.fplace = fb.control('', Validators.required);
     this.ftype = fb.control('', Validators.required);
     this.fdesc = fb.control('');
-    //this.usrData = this.shareService.getUserData();
+    this.usrData = this.service.getUserData();
     //this.fname = fb.control('', Validators.required);
     this.reportForm = fb.group({ 
       'fplace': this.fplace,
       'ftype': this.ftype,
       'fdesc': this.fdesc, 
       //'fname': this.fname
-    })
+    });
+    //console.log(this.usrData);
   }
 
   ionViewDidLoad() {
@@ -92,7 +94,8 @@ export class AddDataPage {
 
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true 
     }    
     this.camera.getPicture(camOpt).then((imageData) => {
         this.imageData = imageData;
@@ -124,8 +127,8 @@ export class AddDataPage {
   storeData(){
     let data = {
       'key': this.stockKey,
-      'lat': 19.829796,
-      'lon': 99.772420,
+      'lat': this.lat,
+      'lon': this.lon,
       'fplace': this.reportForm.controls['fplace'].value,
       'fdesc': this.reportForm.controls['fdesc'].value,
       'ftype': this.reportForm.controls['ftype'].value,
@@ -133,14 +136,15 @@ export class AddDataPage {
       'ddmmyy': this.ddmmyy,
       'img': this.imageData,
       'imgfile': this.imageFile,
-      'fname': 'fnamedasdada',
-      'user_id': 1
+      'fname': this.usrData.name_user,
+      'user_id': this.usrData.id_user
     };
 
     this.storage.set(this.stockKey,data).then(
       (res) => {
-        console.log('Stored item!');      
+        //console.log('Stored item!');      
         this.resetForm();
+        this.getStorage();
       },
       (error) => {
         console.error('Error storing item', error)
@@ -152,16 +156,16 @@ export class AddDataPage {
     let loader = this.loadingCtrl.create({content: "กำลังบันทึกข้อมูล.."});    
 
     let data = JSON.stringify({
-      'lat': 19.642715,
-      'lon': 99.833380,
+      'lat': this.lat,
+      'lon': this.lon,
       'fplace': this.reportForm.controls['fplace'].value,
       'fdesc': this.reportForm.controls['fdesc'].value,
       'ftype': this.reportForm.controls['ftype'].value,
       'yymmdd': this.yymmdd,
       'img': this.imageData,
-      'imgfile': this.imageFile,
-      'fname': 'fnamedasdada',
-      'user_id': 1
+      //'imgfile': this.imageFile,
+      'fname': this.usrData.name_user,
+      'user_id': this.usrData.id_user
     });
         
     loader.present();    

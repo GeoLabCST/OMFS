@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController, ViewController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+//import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { DomSanitizer } from '@angular/platform-browser';
 import {Storage} from '@ionic/storage';
 
@@ -34,7 +34,7 @@ export class EditdataPage {
     private loadingCtrl : LoadingController,
     private camera : Camera,     
     private alertCtrl: AlertController,
-    private transfer: FileTransfer,    
+    //private transfer: FileTransfer,    
     public http: HttpClient,
     public dom: DomSanitizer,
     public storage: Storage
@@ -60,9 +60,9 @@ export class EditdataPage {
 
   openGallery() {
     const camOpt: CameraOptions={      
-      quality: 100,
+      quality: 20,
+      destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       correctOrientation: true      
       //targetWidth: 1000,
@@ -70,7 +70,7 @@ export class EditdataPage {
     }
     this.camera.getPicture(camOpt).then((imageData) => {
       this.imgData = imageData;
-      this.imageFile=imageData.substr(imageData.lastIndexOf('/') + 1);
+      this.imageFile='data:image/jpeg;base64,' + imageData;
     }, (err) => {
       console.log(err);
     });
@@ -87,9 +87,9 @@ export class EditdataPage {
       'ftype': this.ftype,
       'yymmdd': this.yymmdd,
       'img': this.imgData,
-      'imgfile': this.imageFile,
-      'fname': 'fnamedasdada',
-      'user_id': 1
+      //'imgfile': this.imageFile,
+      'fname': this.fname,
+      'user_id': this.user_id
     });
         
     loader.present();    
@@ -110,8 +110,6 @@ export class EditdataPage {
     setTimeout(() => {
       this.deleteData(this.key);
     }, 1000);
-
-
   } 
 
   deleteData(key : string) {

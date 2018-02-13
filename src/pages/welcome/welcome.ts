@@ -1,10 +1,12 @@
-import { TabsPage } from './../tabs/tabs';
+import {TabsPage} from './../tabs/tabs';
 import {Component} from '@angular/core';
 import {IonicPage, NavController, LoadingController, AlertController, Events} from 'ionic-angular';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
+import {ServiceProvider} from '../../providers/service/service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
-import { RegisterPage } from '../register/register';
+import {RegisterPage} from '../register/register';
 
 //import { MapPage } from '../map/map';
 
@@ -16,7 +18,7 @@ import { RegisterPage } from '../register/register';
 export class WelcomePage {
 
   public reportForm : FormGroup;
-  public email_user : FormControl;
+  public iden_number : FormControl;
   public pass_user : FormControl;
   public res: any;
 
@@ -26,14 +28,18 @@ export class WelcomePage {
     private loadingCtrl : LoadingController,
     private alertCtrl : AlertController,
     public http: HttpClient,
-    public events: Events
+    public events: Events,
+    public service: ServiceProvider,
+    private screenOrientation: ScreenOrientation
   ){
-    this.email_user = fb.control('', Validators.required);
+    this.iden_number = fb.control('', Validators.required);
     this.pass_user = fb.control('', Validators.required);
     this.reportForm = fb.group({
-      'email_user': this.email_user, 
+      'iden_number': this.iden_number, 
       'pass_user': this.pass_user
     })
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+
   }
 
   signup(){
@@ -42,11 +48,11 @@ export class WelcomePage {
 
   submit() {
     let loader = this.loadingCtrl.create({content: "กำลังเข้าสู่ระบบ.."});  
-    let email_user = this.reportForm.controls['email_user'].value;
+    let iden_number = this.reportForm.controls['iden_number'].value;
     let pass_user = this.reportForm.controls['pass_user'].value;
    
     let data = JSON.stringify({
-      'email_user':email_user,
+      'iden_number':iden_number,
       'pass_user':pass_user
     });
 
@@ -54,8 +60,7 @@ export class WelcomePage {
     this.http.post('http://119.59.125.191/service/checklogin_omfs.php', data)
     .subscribe(res => {
        this.res = res;
-       console.log(res);
-      
+       //console.log(res);      
       if (this.res.message == 'error') {
          loader.dismiss();      
           let alert=this.alertCtrl.create({
@@ -74,10 +79,9 @@ export class WelcomePage {
     });
   }  
 
-  gotoindex(){
-  
+  gotoindex(){  
     // Sharing data using service
-    // this.shareService.setUserData(this.res);
+    this.service.setUserData(this.res);
     this.navCtrl.push(TabsPage);
   }
 

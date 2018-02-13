@@ -1,4 +1,4 @@
-<ion-content padding default-background text-center>
+<ion-content padding text-center>
   <img width="50%" src="assets/imgs/omfslogo.png" alt="">
 
 
@@ -6,7 +6,7 @@
     <div class="form">
       <ion-list>
         <ion-item>
-          <ion-input type="number" formControlName="email_user" placeholder="Username" required></ion-input>
+          <ion-input type="number" formControlName="iden_number" placeholder="Username" required></ion-input>
         </ion-item>
 
         <ion-item>
@@ -17,7 +17,7 @@
       <!-- [disabled]="!reportForm.valid" -->
       <button ion-button color="secondary" block round (click)="submit()">LOGIN</button>
       <button ion-button color="primary" block round (click)="signup()">REGISTER</button>
-      <button ion-button color="dark" block round>OFFLINE MODE</button>
+      <!--button ion-button color="dark" block round>OFFLINE MODE</button-->
     </div>
   </form>
 
