@@ -327,6 +327,12 @@ export class LayerPage {
       "lyr": "c55_hazard",
       "lyr_desc": "พื้นที่เสี่ยงภัยจากสารอันตราย",
       "checked": []
+    },
+    {
+      "id": "56",
+      "lyr": "topo_map",
+      "lyr_desc": "แผนที่ภูมิประเทศ 1:50000",
+      "checked": []
     }
   ]
 

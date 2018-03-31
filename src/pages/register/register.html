@@ -30,6 +30,10 @@
                         <ion-label floating>เบอร์โทรศัพท์</ion-label>
                         <ion-input required type="number" formControlName="tel_user"   ></ion-input>
                     </ion-item>
+                    <ion-item no-padding>
+                        <ion-label floating>email </ion-label>
+                        <ion-input required type="email" formControlName="email_user" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" ></ion-input>
+                    </ion-item>
                     <!---Input field city-->
                     <ion-item no-padding>
                         <ion-label floating>จังหวัด</ion-label>
@@ -57,8 +61,8 @@
 
                     <!---Input field email-->
                     <ion-item no-padding>
-                        <ion-label floating>email <small>*ใช้ในการเข้าสู่ระบบ</small></ion-label>
-                        <ion-input required type="email" formControlName="email_user" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" ></ion-input>
+                        <ion-label floating>เลขบัตรประจำตัวประชาชน <small>*ใช้ในการเข้าสู่ระบบ</small></ion-label>
+                        <ion-input required type="number" formControlName="iden_number"  ></ion-input>
                     </ion-item>
                     <ion-item no-padding>
                         <ion-label floating>รหัสผ่าน <small>*ใช้ในการเข้าสู่ระบบ</small></ion-label>

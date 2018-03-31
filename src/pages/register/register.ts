@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, LoadingController, ToastController, AlertController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController} from 'ionic-angular';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
@@ -25,6 +25,7 @@ export class RegisterPage {
   public email_user : FormControl;
   public pass_user : FormControl;
   public level_user : FormControl;
+  public iden_number : FormControl;
   public location : number;
   public imageURI:any;
   public imageFileName:any;
@@ -50,6 +51,7 @@ export class RegisterPage {
     this.tam_user = fb.control('', Validators.required);
     this.email_user = fb.control('', Validators.required);
     this.pass_user = fb.control('', Validators.required);
+    this.iden_number = fb.control('', Validators.required);
     this.level_user = fb.control('', Validators.required);
     this.reportForm = fb.group({
       'name_user': this.name_user, 
@@ -60,6 +62,7 @@ export class RegisterPage {
       'tam_user': this.tam_user, 
       'email_user': this.email_user, 
       'pass_user': this.pass_user, 
+      'iden_number': this.iden_number,
       'level_user': this.level_user
     })
   }
@@ -95,6 +98,7 @@ export class RegisterPage {
     let email_user = this.reportForm.controls['email_user'].value;
     let pass_user = this.reportForm.controls['pass_user'].value;
     let level_user = this.reportForm.controls['level_user'].value;
+    let iden_number = this.reportForm.controls['iden_number'].value;
     let img64 = this.imageFileName;
    
     let data = JSON.stringify({
@@ -107,6 +111,7 @@ export class RegisterPage {
       'email_user':email_user,
       'pass_user':pass_user,
       'level_user':level_user,
+      'iden_number':iden_number,
       'img64':img64
     });
 
@@ -192,7 +197,7 @@ export class RegisterPage {
 
 
   
-    fileTransfer.upload(this.imageURI, 'http://119.59.125.189/isnre2/php_app/isnre_upload.php', options)
+    fileTransfer.upload(this.imageURI, 'http://119.59.125.191/libs/img_up_omfs.php', options)
     .then(res => {   
       loader.dismiss(); 
       this.gotoHome();      
