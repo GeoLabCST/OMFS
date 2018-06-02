@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.geolab.omfs" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.geolab.omfs" version="0.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>OMFS</name>
     <description>OMFS application</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Dev by GeoLab Team</author>
+    <author email="geolab4app@gmail.com" href="http://119.59.125.191/omfs">Dev by GeoLab Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -90,4 +90,5 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-sqlite-storage" spec="^2.2.0" />
     <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
+    <engine name="ios" spec="~4.5.4" />
 </widget>
