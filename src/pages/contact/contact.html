@@ -10,16 +10,16 @@
 </ion-header>
 
 <ion-content class="app-font-25">
-   <ion-refresher (ionRefresh)="doRefresh($event)">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  
-   <ion-list>
+
+  <ion-list>
     <ion-item *ngFor="let s of report">
-      <ion-thumbnail  item-start>
+      <ion-thumbnail item-start>
         <img src="http://119.59.125.191/service/uploads/{{s.img}}">
       </ion-thumbnail>
-      <h4>สถานที่ : {{s.ftype}}</h4>
+      <h4>สถานที่ : {{s.fplace}}</h4>
       <p>ประเภทไฟ : {{s.ftype}}</p>
       <p>คำอธิบาย : {{s.fdesc}} </p>
       <p>วันที่ : {{s.acq_date}} </p>

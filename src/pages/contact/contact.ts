@@ -7,31 +7,30 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: 'contact.html'
 })
 export class ContactPage {
-  public report : any; 
+  public report: any;
 
   constructor(
-  	public navCtrl: NavController,
+    public navCtrl: NavController,
     public http: HttpClient,
-  ) {  	
+  ) {
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.initializePro();
   }
 
-  reload(){
+  reload() {
     this.initializePro();
   }
-
 
   initializePro() {
     this.http.get('http://119.59.125.191/service/service_fire_report.php')
-    .subscribe(res => {
-      this.report = res;
-      //console.log(res);
-    }, error => {
-      console.log("Oooops!");
-    });
+      .subscribe(res => {
+        this.report = res;
+        //console.log(res);
+      }, error => {
+        console.log("Oooops!");
+      });
   }
 
   doRefresh(refresher) {

@@ -154,7 +154,7 @@ export class RegisterPage {
 		      this.gotoHome();      
 		      let alert=this.alertCtrl.create({
 		        title: 'ไม่สามารถบันทึกได้!',
-		        subTitle: 'E-Mail ของท่านเคยมีการสมัครสมาชิกแล้ว กรุณาเข้าสู่ระบบ',
+		        subTitle: 'Username ของท่านเคยมีการสมัครสมาชิกแล้ว กรุณาเข้าสู่ระบบ',
 		        buttons:['ok']
 		      });
 		      alert.present();     

@@ -13,7 +13,9 @@
       <ion-item>
         <ion-thumbnail item-start>
           <!-- <img src="http://119.59.125.191/service/uploads/{{c.img}}"> -->
-          <img [src]="dom.bypassSecurityTrustUrl(s.imgfile)" />
+          <!-- <img [src]="dom.bypassSecurityTrustUrl(s.imgfile)" /> -->
+          <img [src]="s.imgfile" *ngIf="s.imgfile" />
+          <img src="./assets/imgs/no-image.jpg" *ngIf="!s.imgfile" padding>
         </ion-thumbnail>
         <h4>สถานที่ : {{s.ftype}}</h4>
         <p>ประเภทไฟ : {{s.ftype}}</p>
